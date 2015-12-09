@@ -20,11 +20,7 @@ public final class RandomFactory {
 	 * @return
 	 */
 	public static Random createRandom() {
-		return new Random(
-				Instant.now().toEpochMilli()
-				^ ( (long)(new Object()).hashCode() << 32 )
-				^ (new Object()).hashCode()
-		);
+		return RandomFactory.createRandom(null);
 	}
 	
 	
@@ -35,13 +31,26 @@ public final class RandomFactory {
 	 * @return
 	 */
 	public static Random createRandom(Random random) {
+		return RandomFactory.createRandom(random, 100);
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static Random createRandom(Random random, int number_of_rounds) {
 		long seed = (
 				Instant.now().toEpochMilli()
 				^ ( (long)(new Object()).hashCode() << 32 )
 				^ (new Object()).hashCode()
 		);
-		for(int a=0,n=random.nextInt(100);a<n;a++) {
-			seed ^= random.nextLong();
+		if( random != null ) {
+			for(int a=0,n=random.nextInt(number_of_rounds);a<n;a++) {
+				seed ^= random.nextLong();
+			}
 		}
 		return new Random(seed);
 	}
