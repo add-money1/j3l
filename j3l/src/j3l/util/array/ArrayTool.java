@@ -1,4 +1,4 @@
-package j3l.util;
+package j3l.util.array;
 
 
 /**

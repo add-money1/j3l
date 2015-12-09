@@ -1,4 +1,4 @@
-package j3l.util;
+package j3l.util.random;
 
 import java.time.Instant;
 import java.util.Random;
@@ -7,7 +7,7 @@ import java.util.Random;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.12.04_0
+ * @version 2015.12.09_0
  * @author Johannes B. Latzel
  */
 public final class RandomFactory {

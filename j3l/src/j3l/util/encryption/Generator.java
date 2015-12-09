@@ -1,4 +1,5 @@
-package j3l.util;
+package j3l.util.encryption;
+
 
 import java.math.BigInteger;
 import java.util.Random;

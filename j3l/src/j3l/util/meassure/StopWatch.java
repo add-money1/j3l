@@ -1,4 +1,4 @@
-package j3l.util;
+package j3l.util.meassure;
 
 public final class StopWatch {
 	

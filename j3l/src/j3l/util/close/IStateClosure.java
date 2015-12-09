@@ -1,7 +1,5 @@
 package j3l.util.close;
 
-import j3l.util.ClosureState;
-
 /**
  * <p></p>
  * 

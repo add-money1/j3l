@@ -7,8 +7,8 @@ import java.io.Flushable;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import j3l.util.ClosureState;
 import j3l.util.check.ArgumentChecker;
+import j3l.util.close.ClosureState;
 import j3l.util.close.IClose;
 
 

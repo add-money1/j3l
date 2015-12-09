@@ -1,7 +1,5 @@
 package j3l.util.encryption;
 
-import j3l.util.Generator;
-
 import java.math.BigInteger;
 
 public final class RSA {
