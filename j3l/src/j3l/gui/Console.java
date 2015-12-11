@@ -80,7 +80,11 @@ public class Console extends JPanel implements KeyListener, IConsole {
 		ready = true;
 	}
 
-	@Override public void keyTyped(KeyEvent e) {}
+	@Override public void keyTyped(KeyEvent e) {
+		/*
+		 * 
+		 */
+	}
 
 	@Override public void keyPressed(KeyEvent e) {
 		if(e.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -106,7 +110,11 @@ public class Console extends JPanel implements KeyListener, IConsole {
 		}
 	}
 
-	@Override public void keyReleased(KeyEvent e) {}
+	@Override public void keyReleased(KeyEvent e) {
+		/*
+		 * 
+		 */
+	}
 	
 	
 	/**

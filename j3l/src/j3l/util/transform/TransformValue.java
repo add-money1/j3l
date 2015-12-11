@@ -1,5 +1,6 @@
 package j3l.util.transform;
 
+
 /**
  * <p>transforms primitive types to Strings, byte[], and char[], and vice versa</p>
  * <p>
@@ -15,7 +16,7 @@ package j3l.util.transform;
  * </p>
  * 
  * @since JDK 1.8
- * @version 2015.10.30_0
+ * @version 2015.12.12_0
  * @author Johannes B. Latzel
  */
 public final class TransformValue {	
@@ -123,7 +124,7 @@ public final class TransformValue {
 			throw new IllegalArgumentException("The length of the array must be equal to 4!");
 		}	
 		
-		return ( (int)(b[0] + 128) << 24) + ( (int)(b[1] + 128) << 16) + ( (int)(b[2] + 128) << 8) + (int)(b[3] + 128);
+		return ( (b[0] + 128) << 24) + ( (b[1] + 128) << 16) + ( (b[2] + 128) << 8) + (b[3] + 128);
 		
 	}	
 	
@@ -237,7 +238,7 @@ public final class TransformValue {
 		}	
 		
 		return ( (long)(b[0] + 128) << 56) + ( (long)(b[1] + 128) << 48) + ( (long)(b[2] + 128) << 40) + ( (long)(b[3] + 128) << 32) + 
-				( (long)(b[4] + 128) << 24) + ( (long)(b[5] + 128) << 16) + ( (long)(b[6] + 128) << 8) + (long)(b[7] + 128);
+				( (long)(b[4] + 128) << 24) + ( (long)(b[5] + 128) << 16) + ( (long)(b[6] + 128) << 8) + (b[7] + 128);
 		
 	}
 	

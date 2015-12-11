@@ -51,7 +51,7 @@ public class ValueOverflowException extends BufferOverflowException {
 	 * (non-Javadoc)
 	 * @see java.lang.Throwable#getCause()
 	 */
-	@Override public Throwable getCause() {
+	@Override public synchronized Throwable getCause() {
 		return cause;
 	}
 	
