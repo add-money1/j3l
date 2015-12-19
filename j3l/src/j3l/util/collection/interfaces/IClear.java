@@ -1,5 +1,6 @@
 package j3l.util.collection.interfaces;
 
+
 /**
  * <p></p>
  * 
@@ -7,7 +8,7 @@ package j3l.util.collection.interfaces;
  * @version 2015.12.14_0
  * @author Johannes B. Latzel
  */
-public interface Clearable {
+public interface IClear {
 	
 	
 	/**
