@@ -1,4 +1,4 @@
-package j3l.util.interfaces;
+package j3l.util;
 
 
 /**

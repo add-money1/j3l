@@ -1,4 +1,4 @@
-package j3l.util.log;
+package j3l.util;
 
 import java.io.BufferedWriter;
 import java.io.File;

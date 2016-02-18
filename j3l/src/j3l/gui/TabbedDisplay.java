@@ -6,7 +6,7 @@ import javax.swing.Icon;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 
-import j3l.util.interfaces.Nameable;
+import j3l.util.Nameable;
 
 public class TabbedDisplay extends Display {
 

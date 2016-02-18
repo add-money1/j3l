@@ -13,7 +13,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultCaret;
 import javax.swing.text.Document;
 
-import j3l.util.interfaces.IConsole;
+import j3l.util.IConsole;
 
 public class Console extends JPanel implements KeyListener, IConsole {
 	

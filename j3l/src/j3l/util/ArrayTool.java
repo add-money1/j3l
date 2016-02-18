@@ -1,18 +1,43 @@
-package j3l.util.array;
+package j3l.util;
 
 
 /**
- * <p></p>
+ * <p>transfers from right to left</p>
  * 
  * @since JDK 1.8
- * @version 2015.11.04_0
+ * @version 2016.01.25_0
  * @author Johannes B. Latzel
  */
 public final class ArrayTool {
 	
 	
+	
+	
+	/*
+	 * 
+	 * Unterscheidung in SafeArrayTool und ArrayTool (keine checks auf null und boundaries)
+	 * namenswahl von left und right in swap üebrdenken
+	 * 
+	 */
+	
+	
+	
 	/**
-	 * <p></p>
+	 * <p>swaps the elements at the specified indices</p>
+	 *
+	 * @param array
+	 * @param left_index index of the left element
+	 * @param right_index index of the right element
+	 */
+	public static <T> void swap(T[] array, int left_index, int right_index) {
+		T temp = array[left_index];
+		array[left_index] = array[right_index];
+		array[right_index] = temp;
+	}
+	
+	
+	/**
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -23,7 +48,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -34,7 +59,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -45,7 +70,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -80,7 +105,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -91,7 +116,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -102,7 +127,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return
@@ -113,7 +138,7 @@ public final class ArrayTool {
 	
 	
 	/**
-	 * <p></p>
+	 * <p>transfers from right to left</p>
 	 *
 	 * @param
 	 * @return

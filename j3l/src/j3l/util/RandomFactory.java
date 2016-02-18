@@ -1,4 +1,4 @@
-package j3l.util.random;
+package j3l.util;
 
 import java.time.Instant;
 import java.util.Random;

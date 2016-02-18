@@ -1,4 +1,4 @@
-package j3l.util.collection.interfaces.remove;
+package j3l.util;
 
 import java.util.stream.Stream;
 

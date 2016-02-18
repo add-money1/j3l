@@ -1,4 +1,4 @@
-package j3l.util.transform;
+package j3l.util;
 
 
 /**
@@ -23,10 +23,10 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toCharArray(int)}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toCharArray(int)}</p>
 	 *
 	 * @param i the 32 bit signed integer value
-	 * @return {@link j3l.util.transform.TransformValue#toCharArray(int) String.valueOf( TransformValue.toCharArray(i) )}
+	 * @return {@link j3l.util.TransformValue#toCharArray(int) String.valueOf( TransformValue.toCharArray(i) )}
 	 */
 	public static String toString(int i) {
 		
@@ -72,10 +72,10 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toInteger(char[])}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toInteger(char[])}</p>
 	 *
 	 * @param s the String must have a length of 2
-	 * @return {@link j3l.util.transform.TransformValue#toInteger(char[]) TransformValue.toInteger(s.toCharArray())}
+	 * @return {@link j3l.util.TransformValue#toInteger(char[]) TransformValue.toInteger(s.toCharArray())}
 	 * @throws IllegalArgumentException
 	 */
 	public static int toInteger(String s) {
@@ -130,10 +130,10 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toCharArray(long)}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toCharArray(long)}</p>
 	 *
 	 * @param l the 64 bit signed integer value
-	 * @return {@link j3l.util.transform.TransformValue#toCharArray(long) String.valueOf( TransformValue.toCharArray(l) )}
+	 * @return {@link j3l.util.TransformValue#toCharArray(long) String.valueOf( TransformValue.toCharArray(l) )}
 	 */
 	public static String toString(long l) {
 		
@@ -185,10 +185,10 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toLong(char[])}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toLong(char[])}</p>
 	 *
 	 * @param s the String must have a length of 4
-	 * @return {@link j3l.util.transform.TransformValue#toLong(char[]) TransformValue.toLong(s.toCharArray())}
+	 * @return {@link j3l.util.TransformValue#toLong(char[]) TransformValue.toLong(s.toCharArray())}
 	 * @throws IllegalArgumentException
 	 */
 	public static long toLong(String s) {
@@ -321,7 +321,7 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toCharArray(int, char[])}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toCharArray(int, char[])}</p>
 	 *
 	 * @param i the 32 bit signed integer value
 	 * @param buffer a character buffer of size two (will be overwritten)
@@ -387,7 +387,7 @@ public final class TransformValue {
 	
 	
 	/**
-	 * <p>wrapper for {@link j3l.util.transform.TransformValue#toCharArray(long, char[])}</p>
+	 * <p>wrapper for {@link j3l.util.TransformValue#toCharArray(long, char[])}</p>
 	 *
 	 * @param l the 64 bit signed integer value
 	 * @param buffer a char buffer of size 4 (will be overwritten)

@@ -1,4 +1,4 @@
-package j3l.util.input;
+package j3l.util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -39,6 +39,7 @@ public final class InputUtility {
 		
 		return buffer;
 	}
+	
 	
 	/**
 	 * <p>reads bytes into the buffer as long as the buffer is completely filled</p>

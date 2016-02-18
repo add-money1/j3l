@@ -1,6 +1,7 @@
-package j3l.util.collection.interfaces.remove;
+package j3l.util;
 
 import java.util.stream.Stream;
+
 
 /**
  * <p></p>
@@ -9,26 +10,24 @@ import java.util.stream.Stream;
  * @version 2015.12.03_0
  * @author Johannes B. Latzel
  */
-public interface IExtendedRemove<T> {
+public interface IExtendedAdd<T> {
 	
 	
 	/**
-	 * <p>
-	 * </p>
+	 * <p></p>
 	 *
 	 * @param
 	 * @return
 	 */
-	void removeAll(Stream<? extends T> stream);
+	void addAll(Stream<? extends T> stream);
 	
 	
 	/**
-	 * <p>
-	 * </p>
+	 * <p></p>
 	 *
 	 * @param
 	 * @return
 	 */
-	boolean removeAll(T[] array);
+	boolean addAll(T[] array);
 	
 }

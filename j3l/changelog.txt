@@ -1,5 +1,52 @@
-
-
+	
+	
+	2016.02.14
+	
+		j3l.util.BinaryTree
+			-> created new class
+			-> generic binary tree
+	
+		
+	2016.02.06
+	
+		j3l.util.check
+			-> merged ValidationChecker and ArgumentChecker
+			
+		j3l.util
+			-> moved several classes here-to: ArrayTool, ComparisonType, IConsole, InputUtility,
+				Logger, Nameable, RandomFactory, StopWatch, TransformValue, IAdd, IBasicAdd, IExtendedAdd,
+				IRemove, IBasicRemove, IExtendRemove
+				
+		j3l
+			-> removed the following packages:
+				j3l.certificate
+				j3l.util.collection
+				j3l.util.collection.interfaces
+				j3l.util.collection.interfaces.add
+				j3l.util.collection.interfaces.remove
+				j3l.util.debug
+				j3l.util.interfaces
+				j3l.util.sort
+				j3l.util.transform
+				
+	
+	
+	2016.01.25
+	
+		j3l.util.array.ArrayTool
+			-> added the static method swap(T[], int, int) which swaps two elements
+		
+	
+	
+	2016.01.07
+	
+		j3l.util.check.ValidationChecker
+			-> added <T extends IValidate> T checkForValidation(T, String)
+			-> checkForValidation(T) now calls checkForValidation(T, String)
+	
+	
+	
+	
 	2015.12.16:
 	
 		j3l.util.collection.SortedList:

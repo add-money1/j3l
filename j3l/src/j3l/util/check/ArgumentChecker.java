@@ -8,7 +8,7 @@ import java.util.Objects;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.12.05_0
+ * @version 2015.02.06_0
  * @author Johannes B. Latzel
  */
 public final class ArgumentChecker {
@@ -202,6 +202,33 @@ public final class ArgumentChecker {
 		}
 		else {
 			return value;
+		}
+	}
+
+
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static <T extends IValidate> T checkForValidation(T validate) {
+		return ArgumentChecker.checkForValidation(validate, "validate");
+	}
+
+
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static <T extends IValidate> T checkForValidation(T validate, String name) {
+		if( !ArgumentChecker.checkForNull(validate, name).isValid() ) {
+			throw new SecurityException("The instance \"" + validate.toString() + "\" is not valid!");
+		}
+		else {
+			return validate;
 		}
 	}
 	
