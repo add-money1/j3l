@@ -16,7 +16,7 @@ import j3l.util.stream.StreamMode;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.02.14_0
+ * @version 2016.02.24_0
  * @author Johannes B. Latzel
  */
 public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
@@ -82,6 +82,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		}
 		long counter = 0;
 		for(Iterator<T> iterator=iterator();iterator.hasNext();counter++) {
+			iterator.next();
 			if( counter < 0 ) {
 				return Long.MAX_VALUE;
 			}
@@ -99,11 +100,75 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 */
 	public boolean add(T t) {
 		length_changed = true;
-		if( head != null ) {
-			return head.add(t);
+		if( head == null ) {
+			head = new BinaryNode(t);
+			return true;
 		}
-		head = new BinaryNode(t);
-		return true;
+		BinaryNode current_node = head;
+		R attribute = attribute_function.apply(t);
+		do {
+			if( attribute.compareTo(attribute_function.apply(current_node.getValue())) <= 0 ) {
+				if( !current_node.hasLeft() ) {
+					current_node.setLeft(t);
+					return true;
+				}
+				else {
+					current_node = current_node.getLeft();
+				}
+			}
+			else {
+				if( !current_node.hasRight() ) {
+					current_node.setRight(t);
+					return true;
+				}
+				else {
+					current_node = current_node.getRight();
+				}
+			}
+			
+		}
+		while( current_node != null );
+		return false;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	private boolean add(BinaryNode node) {
+		length_changed = true;
+		if( head == null ) {
+			head = node;
+			return true;
+		}
+		BinaryNode current_node = head;
+		R attribute = attribute_function.apply(node.getValue());
+		do {
+			if( attribute.compareTo(attribute_function.apply(current_node.getValue())) <= 0 ) {
+				if( !current_node.hasLeft() ) {
+					current_node.setLeft(node);
+					return true;
+				}
+				else {
+					current_node = current_node.getLeft();
+				}
+			}
+			else {
+				if( !current_node.hasRight() ) {
+					current_node.setRight(node);
+					return true;
+				}
+				else {
+					current_node = current_node.getRight();
+				}
+			}
+			
+		}
+		while( current_node != null );
+		return false;
 	}
 	
 	
@@ -132,14 +197,14 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 			}
 			else if( comparison == 0 ) {
 				if( previous == null ) {
-					if( !head.hasLeft() ) {
-						if( head.hasRight() ) {
-							head.getLeft().add(head.getRight());
+					if( head.hasLeft() ) {
+						head = current.getLeft();
+						if( current.hasRight() ) {
+							add(current.getRight());
 						}
-						head = head.getLeft();
 					}
-					else if( !head.hasRight() ) {
-						head = head.getRight();
+					else if( head.hasRight() ) {
+						head = current.getRight();
 					}
 					else {
 						head = null;
@@ -154,8 +219,12 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 					else {
 						previous.removeRight();
 					}
-					previous.add(current.getLeft());
-					previous.add(current.getRight());
+					if( current.hasLeft() ) {
+						add(current.getLeft());
+					}
+					if( current.hasRight() ) {
+						add(current.getRight());
+					}
 					length_changed = true;
 					return true;
 				}
@@ -178,57 +247,124 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * @param
 	 * @return
 	 */
-	public T remove(R attribute) {
+	public T remove(ComparisonType comparison_type, R attribute) {
 		if( head == null ) {
 			return null;
 		}
+		ArgumentChecker.checkForNull(comparison_type, "comparison_type");
 		BinaryNode current = head;
 		BinaryNode previous = null;
 		int comparison;
+		Direction direction;
 		do {
 			comparison = attribute.compareTo(attribute_function.apply(current.getValue()));
-			if( comparison < 0 ) {
-				if( !current.hasLeft() ) {
-					return null;
-				}
-				previous = current;
-				current = current.getLeft();
+			switch( comparison_type ) {
+				case EqualTo:
+					if( comparison < 0 ) {
+						direction = Direction.Left;
+					}
+					else if( comparison == 0 ) {
+						direction = Direction.Stay;
+					}
+					else {
+						direction = Direction.Right;
+					}
+					break;
+				case GreaterThan:
+					if( comparison < 0 ) {
+						direction = Direction.Stay;
+					}
+					else {
+						direction = Direction.Right;
+					}
+					break;
+				case GreaterThanOrEqualTo:
+					if( comparison <= 0 ) {
+						direction = Direction.Stay;
+					}
+					else {
+						direction = Direction.Right;
+					}
+					break;
+				case SmallerThan:
+					if( comparison > 0 ) {
+						direction = Direction.Stay;
+					}
+					else {
+						direction = Direction.Left;
+					}
+					break;
+				case SmallerThanOrEqualTo:
+					if( comparison >= 0 ) {
+						direction = Direction.Stay;
+					}
+					else {
+						direction = Direction.Left;
+					}
+					break;
+				case UnequalTo:
+					if( comparison == 0 ) {
+						// elements on the left could be <= to the current element
+						// elements on the right are guaranteed to be unequal to the current element
+						direction = Direction.Right;
+					}
+					else {
+						direction = Direction.Stay;
+					}
+					break;
+				default:
+					throw new IllegalArgumentException("The type \"" + comparison_type.toString() + "\" is not supported.");
 			}
-			else if( comparison == 0 ) {
-				if( previous == null ) {
-					if( !head.hasLeft() ) {
-						if( !head.hasRight() ) {
-							head.getLeft().add(head.getRight());
+			switch( direction ) {
+				case Left:
+					if( !current.hasLeft() ) {
+						return null;
+					}
+					previous = current;
+					current = current.getLeft();
+					break;
+				case Right:
+					if( !current.hasRight() ) {
+						return null;
+					}
+					previous = current;
+					current = current.getRight();
+					break;
+				case Stay:
+					if( previous == null ) {
+						if( head.hasLeft() ) {
+							head = current.getLeft();
+							if( current.hasRight() ) {
+								add(current.getRight());
+							}
 						}
-						head = head.getLeft();
-					}
-					else if( !head.hasRight() ) {
-						head = head.getRight();
-					}
-					else {
-						head = null;
-					}
-				}
-				else {
-					if( attribute_function.apply(current.getValue()).compareTo(attribute_function.apply(previous.getValue())) <= 0 ) {
-						previous.removeLeft();
+						else if( head.hasRight() ) {
+							head = current.getRight();
+						}
+						else {
+							head = null;
+						}
 					}
 					else {
-						previous.removeRight();
+						if( attribute_function.apply(current.getValue()).compareTo(attribute_function.apply(previous.getValue())) <= 0 ) {
+							previous.removeLeft();
+						}
+						else {
+							previous.removeRight();
+						}
+						if( current.hasLeft() ) {
+							add(current.getLeft());
+						}
+						if( current.hasRight() ) {
+							add(current.getRight());
+						}
 					}
-					previous.add(current.getLeft());
-					previous.add(current.getRight());
-				}
-				length_changed = true;
-				return current.getValue();
+					length_changed = true;
+					return current.getValue();
+				default:
+					throw new IllegalArgumentException("The type \"" + direction.toString() + "\" is not supported.");				
 			}
-			else {
-				if( !current.hasRight() ) {
-					return null;
-				}
-				previous = current;
-				current = current.getRight();
-			}
+			
 		}
 		while( true );
 	}
@@ -259,7 +395,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 				if( previous == null ) {
 					if( head.hasLeft() ) {
 						head = current.getLeft();
-						head.add(current.getRight());
+						add(current.getRight());
 					}
 					else if( head.hasRight() ) {
 						head = current.getRight();
@@ -276,10 +412,10 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 						previous.removeRight();
 					}
 					if( current.hasLeft() ) {
-						previous.add(current.getLeft());
+						add(current.getLeft());
 					}
 					if( current.hasRight() ) {
-						previous.add(current.getRight());
+						add(current.getRight());
 					}
 				}
 				length_changed = true;
@@ -310,6 +446,9 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 			current_node = current_path.getLast();
 			if( !current_node.hasChildren() ) {
 				list.add(current_path.removeLast().getValue());
+				if( current_path.isEmpty() ) {
+					break;
+				}
 				previous_node = current_path.getLast();
 				if( previous_node.hasLeft() ) {
 					if( previous_node.getLeft() == current_node ) {
@@ -505,7 +644,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * <p></p>
 	 * 
 	 * @since JDK 1.8
-	 * @version 2016.02.dd_0
+	 * @version 2016.02.23_0
 	 * @author Johannes B. Latzel
 	 */
 	private class BinaryTreeIterator implements Iterator<T> {
@@ -562,7 +701,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * <p></p>
 	 * 
 	 * @since JDK 1.8
-	 * @version 2016.02.13_0
+	 * @version 2016.02.23_0
 	 * @author Johannes B. Latzel
 	 */
 	private class BinaryNode {
@@ -604,25 +743,11 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		 * @param
 		 * @return
 		 */
-		public boolean add(T t) {
-			if( attribute_function.apply(t).compareTo(attribute_function.apply(value)) <= 0 ) {
-				if( left == null ) {
-					left = new BinaryNode(t);
-					return true;
-				}
-				else {
-					return left.add(t);
-				}
+		public void setLeft(T t) {
+			if( left != null ) {
+				throw new IllegalArgumentException("The left is not null!");
 			}
-			else {
-				if( right == null ) {
-					right = new BinaryNode(t);
-					return true;
-				}
-				else {
-					return right.add(t);
-				}
-			}
+			this.left = new BinaryNode(t);
 		}
 		
 		
@@ -632,28 +757,39 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		 * @param
 		 * @return
 		 */
-		public boolean add(BinaryNode node) {
-			if( node == null ) {
-				return false;
+		public void setRight(T t) {
+			if( right != null ) {
+				throw new IllegalArgumentException("The right is not null!");
 			}
-			if( attribute_function.apply(node.value).compareTo(attribute_function.apply(value)) <= 0 ) {
-				if( left == null ) {
-					left = node;
-					return true;
-				}
-				else {
-					return left.add(node);
-				}
+			this.right = new BinaryNode(t);
+		}
+		
+		
+		/**
+		 * <p></p>
+		 *
+		 * @param
+		 * @return
+		 */
+		public void setLeft(BinaryNode node) {
+			if( left != null ) {
+				throw new IllegalArgumentException("The right is not null!");
 			}
-			else {
-				if( right == null ) {
-					right = node;
-					return true;
-				}
-				else {
-					return right.add(node);
-				}
+			this.left = node;
+		}
+		
+		
+		/**
+		 * <p></p>
+		 *
+		 * @param
+		 * @return
+		 */
+		public void setRight(BinaryNode node) {
+			if( right != null ) {
+				throw new IllegalArgumentException("The right is not null!");
 			}
+			this.right = node;
 		}
 		
 		
@@ -686,7 +822,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		 * @return
 		 */
 		public boolean hasChildren() {
-			return hasLeft() && hasRight();
+			return hasLeft() || hasRight();
 		}
 		
 		
@@ -746,4 +882,12 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		
 		
 	}
+	
+	
+	private enum Direction {
+		Left,
+		Stay,
+		Right;
+	}
+	
 }

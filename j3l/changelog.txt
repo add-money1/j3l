@@ -1,5 +1,31 @@
 	
 	
+	2016.02.24
+	
+		j3l.util.BinaryTree
+			-> modified BinaryTree.BinaryNode.setLeft(BinaryNode)
+				and BinaryTree.BinaryNode.setRight(BinaryNode)
+			-> modified BinaryTree.BinaryNode.hasChildren() - now uses or instead of and
+				
+	
+	2016.02.22
+	
+		j3l.util.BinaryTree
+			-> changed add(T) and added private add(R)
+			-> removed add methods from BinaryTree.BinaryNode
+			-> added setLeft(BinaryNode), setLeft(T), setRight(BinaryNode), setRight(T) to
+				BinaryTree.BinaryNode
+		
+	
+	2016.02.18
+	
+		j3l.util.BinaryTree
+			-> changed remove(R) to remove(ComparisonType, R) so that not only elements equal to the
+				attribute can be found, but elements with attributes associated with all thinkable comparisons
+			-> fixed a bug in remove(...)/add(T)/getSize() (head remove with null-pointer and iteration for size
+				calculation without call to next)
+			
+	
 	2016.02.14
 	
 		j3l.util.BinaryTree
