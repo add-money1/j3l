@@ -1,14 +1,13 @@
 package j3l.util.check;
 
 import java.io.File;
-import java.util.Objects;
 
 
 /**
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.02.06_0
+ * @version 2016.03.10_0
  * @author Johannes B. Latzel
  */
 public final class ArgumentChecker {
@@ -32,7 +31,10 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static <T> T checkForNull(T object, String name_of_the_object) {
-		return Objects.requireNonNull(object, "The argument \"" + name_of_the_object + "\" must not be equal to null!");
+		if( object == null ) {
+			throw new NullPointerException("The argument \"" + name_of_the_object + "\" must not be equal to null!");
+		}
+		return object;
 	}
 	
 	
@@ -171,9 +173,7 @@ public final class ArgumentChecker {
 			throw new IllegalArgumentException("The file \"" + name_of_the_file + "\" at \""
 					+ file.getAbsolutePath() + "\" does not exists!");
 		}
-		else {
-			return file;
-		}
+		return file;
 	}
 
 

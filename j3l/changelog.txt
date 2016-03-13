@@ -1,5 +1,18 @@
 	
 	
+	2016.03.11
+		
+		j3l.util.BinaryTree.BinaryTreeIterator
+			-> now uses "java.util.ArrayList" instead of "java.util.LinkedList" (caused too much heap
+				transactions)
+		
+	
+	2016.03.10
+	
+		j3l.util.check.ArgumentChecker
+			-> modified "<T> T checkForNull(T, String)" and "File checkForExistence(File, String)"
+		
+	
 	2016.02.24
 	
 		j3l.util.BinaryTree

@@ -1,5 +1,6 @@
 package j3l.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -16,7 +17,7 @@ import j3l.util.stream.StreamMode;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.02.24_0
+ * @version 2016.03.11_0
  * @author Johannes B. Latzel
  */
 public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
@@ -636,7 +637,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * @see java.lang.Iterable#iterator()
 	 */
 	@Override public Iterator<T> iterator() {
-		return new BinaryTreeIterator();
+		return new BinaryTreeIterator(head);
 	}
 	
 	
@@ -653,7 +654,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		/**
 		 * <p></p>
 		 */
-		private final LinkedList<BinaryNode> next_node_list;
+		private final ArrayList<BinaryNode> next_node_list;
 		
 		
 		/**
@@ -662,8 +663,8 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		 * @param
 		 * @return
 		 */
-		public BinaryTreeIterator() {
-			next_node_list = new LinkedList<>();
+		public BinaryTreeIterator(BinaryNode head) {
+			next_node_list = new ArrayList<>(10);
 			if( head != null ) {
 				next_node_list.add(head);
 			}
@@ -684,7 +685,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 			if( !hasNext() ) {
 				return null;
 			}
-			BinaryNode current_node = next_node_list.removeFirst();
+			BinaryNode current_node = next_node_list.remove(next_node_list.size() - 1);
 			if( current_node.hasLeft() ) {
 				next_node_list.add(current_node.getLeft());
 			}
