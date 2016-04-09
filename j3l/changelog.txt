@@ -1,5 +1,24 @@
 	
 	
+	
+	2016.04.09
+		
+		j3l.util.LoopedTaskThread
+			-> added class
+	
+	2016.04.03
+		
+		j3l.util.RecursiveCollection
+			-> added class
+
+	
+	2016.03.14
+	
+		j3l.util.BinaryTree
+			-> added "boolean addAll(Collection<T>)"
+	
+		
+	
 	2016.03.11
 		
 		j3l.util.BinaryTree.BinaryTreeIterator

@@ -1,6 +1,7 @@
 package j3l.util;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -17,7 +18,7 @@ import j3l.util.stream.StreamMode;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.03.11_0
+ * @version 2016.03.14_0
  * @author Johannes B. Latzel
  */
 public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
@@ -130,6 +131,21 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		}
 		while( current_node != null );
 		return false;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public boolean addAll(Collection<T> collection) {
+		boolean return_value = true;
+		for( T t : collection ) {
+			return_value &= add(t);
+		}
+		return return_value;
 	}
 	
 	
