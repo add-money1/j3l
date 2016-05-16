@@ -1,5 +1,18 @@
 	
 	
+	201605.16
+		
+		j3l.util.StackTraceConverter
+			-> added new class
+		
+	
+	2016.05.07
+		
+		j3l.util.BinaryTree
+			-> removed "boolean length_changed"
+			-> all instances of add, remove, and clear now update the "long size" variable (naturally
+				almost all methods have been modified)	
+	
 	
 	2016.04.09
 		

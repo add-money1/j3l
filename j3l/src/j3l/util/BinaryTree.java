@@ -18,7 +18,7 @@ import j3l.util.stream.StreamMode;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.03.14_0
+ * @version 2016.05.07_0
  * @author Johannes B. Latzel
  */
 public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
@@ -44,12 +44,6 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	
 	/**
 	 * <p></p>
-	 */
-	private boolean length_changed;
-	
-	
-	/**
-	 * <p></p>
 	 *
 	 * @param comparator
 	 */
@@ -57,7 +51,6 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 		this.attribute_function = ArgumentChecker.checkForNull(attribute_function, "attribute_function");
 		head = null;
 		size = 0;
-		length_changed = false;
 	}
 	
 	
@@ -79,18 +72,6 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * @return
 	 */
 	public long getSize() {
-		if( !length_changed ) {
-			return size;
-		}
-		long counter = 0;
-		for(Iterator<T> iterator=iterator();iterator.hasNext();counter++) {
-			iterator.next();
-			if( counter < 0 ) {
-				return Long.MAX_VALUE;
-			}
-		}
-		size = counter;
-		length_changed = false;
 		return size;
 	}
 	
@@ -101,9 +82,9 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * @param t
 	 */
 	public boolean add(T t) {
-		length_changed = true;
 		if( head == null ) {
 			head = new BinaryNode(t);
+			size++;
 			return true;
 		}
 		BinaryNode current_node = head;
@@ -112,20 +93,18 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 			if( attribute.compareTo(attribute_function.apply(current_node.getValue())) <= 0 ) {
 				if( !current_node.hasLeft() ) {
 					current_node.setLeft(t);
+					size++;
 					return true;
 				}
-				else {
-					current_node = current_node.getLeft();
-				}
+				current_node = current_node.getLeft();
 			}
 			else {
 				if( !current_node.hasRight() ) {
 					current_node.setRight(t);
+					size++;
 					return true;
 				}
-				else {
-					current_node = current_node.getRight();
-				}
+				current_node = current_node.getRight();
 			}
 			
 		}
@@ -156,7 +135,6 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 * @return
 	 */
 	private boolean add(BinaryNode node) {
-		length_changed = true;
 		if( head == null ) {
 			head = node;
 			return true;
@@ -169,18 +147,14 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 					current_node.setLeft(node);
 					return true;
 				}
-				else {
-					current_node = current_node.getLeft();
-				}
+				current_node = current_node.getLeft();
 			}
 			else {
 				if( !current_node.hasRight() ) {
 					current_node.setRight(node);
 					return true;
 				}
-				else {
-					current_node = current_node.getRight();
-				}
+				current_node = current_node.getRight();
 			}
 			
 		}
@@ -226,25 +200,23 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 					else {
 						head = null;
 					}
-					length_changed = true;
+					size--;
 					return true;
+				}
+				if( attribute_function.apply(current.getValue()).compareTo(attribute_function.apply(previous.getValue())) <= 0 ) {
+					previous.removeLeft();
 				}
 				else {
-					if( attribute_function.apply(current.getValue()).compareTo(attribute_function.apply(previous.getValue())) <= 0 ) {
-						previous.removeLeft();
-					}
-					else {
-						previous.removeRight();
-					}
-					if( current.hasLeft() ) {
-						add(current.getLeft());
-					}
-					if( current.hasRight() ) {
-						add(current.getRight());
-					}
-					length_changed = true;
-					return true;
+					previous.removeRight();
 				}
+				if( current.hasLeft() ) {
+					add(current.getLeft());
+				}
+				if( current.hasRight() ) {
+					add(current.getRight());
+				}
+				size--;
+				return true;
 			}
 			else {
 				if( !current.hasRight() ) {
@@ -376,7 +348,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 							add(current.getRight());
 						}
 					}
-					length_changed = true;
+					size--;
 					return current.getValue();
 				default:
 					throw new IllegalArgumentException("The type \"" + direction.toString() + "\" is not supported.");				
@@ -435,7 +407,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 						add(current.getRight());
 					}
 				}
-				length_changed = true;
+				size--;
 				return current.getValue();
 			}
 		}
@@ -490,6 +462,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 			}
 		}
 		while( remaining > 0 && !current_path.isEmpty() );
+		size -= list.size();
 		return list;
 	}
 	
@@ -516,7 +489,6 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	public void clear() {
 		head = null;
 		size = 0;
-		length_changed = false;
 	}
 	
 	
