@@ -1,6 +1,11 @@
 	
+	2016.05.20
 	
-	201605.16
+		j3l.util.PrintElements
+			-> added new class
+		
+	
+	2016.05.16
 		
 		j3l.util.StackTraceConverter
 			-> added new class
