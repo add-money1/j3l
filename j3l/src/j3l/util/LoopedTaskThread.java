@@ -8,7 +8,7 @@ import j3l.util.check.ArgumentChecker;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.04.09_0
+ * @version 2016.05.21_0
  * @author Johannes B. Latzel
  */
 public final class LoopedTaskThread extends Thread {
@@ -50,7 +50,13 @@ public final class LoopedTaskThread extends Thread {
 		long remaining_time;
 		while( isAlive() && !isInterrupted() ) {
 			start_time = Instant.now().toEpochMilli();
-			looped_task.run();
+			try {
+				looped_task.run();
+			}
+			catch( Exception e ) {
+				e.printStackTrace();
+				break;
+			}
 			remaining_time = loop_time_span - Instant.now().toEpochMilli() + start_time;
 			if( remaining_time > 0 ) {
 				try {
@@ -58,6 +64,7 @@ public final class LoopedTaskThread extends Thread {
 				}
 				catch( InterruptedException e ) {
 					e.printStackTrace();
+					break;
 				}
 			}
 		}

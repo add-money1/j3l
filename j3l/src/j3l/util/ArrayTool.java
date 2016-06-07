@@ -5,7 +5,7 @@ package j3l.util;
  * <p>transfers from right to left</p>
  * 
  * @since JDK 1.8
- * @version 2016.01.25_0
+ * @version 2016.05.29_0
  * @author Johannes B. Latzel
  */
 public final class ArrayTool {
@@ -42,8 +42,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static <T> void transferValues(T[] left, T[] right) {
-		ArrayTool.transferValues(left, right, 0, right.length);
+	public static <T> T[] transferValues(T[] left, T[] right) {
+		return ArrayTool.transferValues(left, right, 0, right.length);
 	}
 	
 	
@@ -53,8 +53,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static <T> void transferValues(T[] left, T[] right, int left_offset) {
-		ArrayTool.transferValues(left, right, left_offset, right.length);
+	public static <T> T[] transferValues(T[] left, T[] right, int left_offset) {
+		return ArrayTool.transferValues(left, right, left_offset, right.length);
 	}
 	
 	
@@ -64,8 +64,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static <T> void transferValues(T[] left, T[] right, int left_offset, int length) {
-		ArrayTool.transferValues(left, right, left_offset, 0, length);
+	public static <T> T[] transferValues(T[] left, T[] right, int left_offset, int length) {
+		return ArrayTool.transferValues(left, right, left_offset, 0, length);
 	}
 	
 	
@@ -75,7 +75,7 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static <T> void transferValues(T[] left, T[] right, int left_offset, int right_offset, int length) {
+	public static <T> T[] transferValues(T[] left, T[] right, int left_offset, int right_offset, int length) {
 		
 		if( left == null ) {
 			throw new IllegalArgumentException("The left must not be equal to null!");
@@ -101,6 +101,7 @@ public final class ArrayTool {
 			left[a] = right[ a - left_offset + right_offset ];
 		}
 		
+		return left;
 	}
 	
 	
@@ -110,8 +111,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static void transferValues(byte[] left, byte[] right) {
-		ArrayTool.transferValues(left, right, 0, right.length);
+	public static byte[] transferValues(byte[] left, byte[] right) {
+		return ArrayTool.transferValues(left, right, 0, right.length);
 	}
 	
 	
@@ -121,8 +122,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static void transferValues(byte[] left, byte[] right, int left_offset) {
-		ArrayTool.transferValues(left, right, left_offset, right.length);
+	public static byte[] transferValues(byte[] left, byte[] right, int left_offset) {
+		return ArrayTool.transferValues(left, right, left_offset, right.length);
 	}
 	
 	
@@ -132,8 +133,8 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static void transferValues(byte[] left, byte[] right, int left_offset, int length) {
-		ArrayTool.transferValues(left, right, left_offset, 0, length);
+	public static byte[] transferValues(byte[] left, byte[] right, int left_offset, int length) {
+		return ArrayTool.transferValues(left, right, left_offset, 0, length);
 	}
 	
 	
@@ -143,7 +144,7 @@ public final class ArrayTool {
 	 * @param
 	 * @return
 	 */
-	public static void transferValues(byte[] left, byte[] right, int left_offset, int right_offset, int length) {
+	public static byte[] transferValues(byte[] left, byte[] right, int left_offset, int right_offset, int length) {
 		
 		if( left == null ) {
 			throw new IllegalArgumentException("The left must not be equal to null!");
@@ -168,6 +169,8 @@ public final class ArrayTool {
 		for(int a=left_offset,n=left_offset+length;a<n;a++) {
 			left[a] = right[ a - left_offset + right_offset ];
 		}
+		
+		return left;
 		
 	}
 	

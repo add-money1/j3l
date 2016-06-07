@@ -19,7 +19,7 @@ package j3l.util;
  * @version 2015.12.12_0
  * @author Johannes B. Latzel
  */
-public final class TransformValue {	
+@Deprecated public final class TransformValue {	
 	
 	
 	/**

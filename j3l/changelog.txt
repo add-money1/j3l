@@ -1,4 +1,24 @@
+	2016.06.07
 	
+		j3l.util.TransformValue2
+			-> added class
+		
+		j3l.util.TransformValue
+			-> marked as "@Deprecated"
+			
+		
+	2016.05.29
+		j3l.util.ArrayTool
+			-> all instances of "transferValues(...)" now return the "left" parameter
+	
+		
+	2016.05.21
+	
+		j3l.util.LoopedTaskThread
+			-> modified "void run()": it now breaks its life-cycle if an Exception in "looped_task.run()"
+				or an InterruptedException in "sleep(remaining_time)" is caught
+	
+		
 	2016.05.20
 	
 		j3l.util.PrintElements
