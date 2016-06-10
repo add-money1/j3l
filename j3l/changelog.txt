@@ -1,3 +1,9 @@
+	
+	2016.06.10
+	
+		j3l.util.InputUtility
+			-> all methods throw "java.io.IOException" when EOF is reached while reading in data
+	
 	2016.06.07
 	
 		j3l.util.TransformValue2

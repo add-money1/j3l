@@ -8,7 +8,7 @@ import java.io.Reader;
  * <p>utility-class for {@link java.io.Reader reader} and {@link java.io.InputStream input streams}</p>
  * 
  * @since JDK 1.8
- * @version 2015.08.29_0
+ * @version 2016.06.10_0
  * @author Johannes B. Latzel
  */
 public final class InputUtility {
@@ -24,19 +24,19 @@ public final class InputUtility {
 	 * @param reader any reader
 	 * @param buffer the buffer in which the characters are read into
 	 * @return the buffer
-	 * @throws IOException  occurs in reader.read(....)
+	 * @throws IOException
 	 */
 	public static char[] readComplete(Reader reader, char[] buffer) throws IOException {
-		
 		int actually_read = 0;
 		int buffer_size = buffer.length;
-		
-		
+		int current_read_in_bytes;
 		while( actually_read < buffer_size ) {
-			actually_read += reader.read( buffer, actually_read, (buffer_size - actually_read) );
+			current_read_in_bytes = reader.read(buffer, actually_read, (buffer_size - actually_read));
+			if( current_read_in_bytes < 0 ) {
+				throw new IOException("Reached EOF while reading!");
+			}
+			actually_read += current_read_in_bytes;
 		}
-		
-		
 		return buffer;
 	}
 	
@@ -51,19 +51,19 @@ public final class InputUtility {
 	 * @param input_stream any input stream
 	 * @param buffer the buffer in which the bytes are read into
 	 * @return the buffer
-	 * @throws IOException occurs in input_stream.read(....)
+	 * @throws IOException
 	 */
 	public static byte[] readComplete(InputStream input_stream, byte[] buffer) throws IOException {
-		
 		int actually_read = 0;
 		int buffer_size = buffer.length;
-		
-		
+		int current_read_in_bytes;
 		while( actually_read < buffer_size ) {
-			actually_read += input_stream.read( buffer, actually_read, (buffer_size - actually_read) );
+			current_read_in_bytes = input_stream.read(buffer, actually_read, (buffer_size - actually_read));
+			if( current_read_in_bytes < 0 ) {
+				throw new IOException("Reached EOF while reading!");
+			}
+			actually_read += current_read_in_bytes;
 		}
-		
-		
 		return buffer;
 	}
 	
