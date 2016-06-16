@@ -1,4 +1,15 @@
 	
+	2016.06.16
+	
+		j3l.util.IBinaryData
+			-> added interface
+		
+		j3l.util.DataTabe
+			-> added "Collection<R> getAllEntries() throws IOException" and
+				"void trim() throws IOException"
+			-> changed "long getAvailableIndex()" to "long getAvailableIndex() throws IOException"
+		
+		
 	2016.06.15
 	
 		j3l.util.Indexable
@@ -6,6 +17,12 @@
 	
 		j3l.util.DataTable
 			-> added interface
+			
+		j3l.util.LongRange
+			-> added class
+		
+		j3l.GlobalString
+			-> added class
 			
 	
 	2016.06.10
