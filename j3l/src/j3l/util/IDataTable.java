@@ -10,7 +10,7 @@ import java.util.Collection;
  * @version 2016.06.16_0
  * @author Johannes B. Latzel
  */
-public interface DataTable<T extends Indexable, R extends IBinaryData> {
+public interface IDataTable<T extends Indexable, R extends IBinaryData> {
 	
 	
 	/**

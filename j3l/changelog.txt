@@ -1,13 +1,26 @@
 	
+	2016.06.18
+		
+		j3l.util.LongRange
+			-> added "LongRange(long)"
+		
 	2016.06.16
 	
 		j3l.util.IBinaryData
 			-> added interface
 		
-		j3l.util.DataTabe
+		j3l.util.IDataTabe
 			-> added "Collection<R> getAllEntries() throws IOException" and
 				"void trim() throws IOException"
 			-> changed "long getAvailableIndex()" to "long getAvailableIndex() throws IOException"
+			-> changed class-name to "IDataTable"
+			
+		j3l.util.LongRange
+			-> changed "boolean isValid()"
+			-> added "long getRange()"
+			-> added "static Comparator<LongRange> BY_BEGIN_COMPARATOR",
+				"static Comparator<LongRange> BY_END_COMPARATOR", and
+				"static Comparator<LongRange> BY_RANGE_COMPARATOR"
 		
 		
 	2016.06.15
