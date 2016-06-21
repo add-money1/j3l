@@ -10,7 +10,7 @@ import j3l.util.check.IValidate;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.06.18_0
+ * @version 2016.06.21_0
  * @author Johannes B. Latzel
  */
 public final class LongRange implements IValidate {
@@ -48,6 +48,12 @@ public final class LongRange implements IValidate {
 	
 	/**
 	 * <p></p>
+	 */
+	private boolean is_valid;
+	
+	
+	/**
+	 * <p></p>
 	 * 
 	 * @param
 	 */
@@ -64,6 +70,7 @@ public final class LongRange implements IValidate {
 	public LongRange(long begin, long end) {
 		this.begin = begin;
 		this.end = end;
+		is_valid = begin <= end;
 	}
 	
 	
@@ -106,8 +113,24 @@ public final class LongRange implements IValidate {
 	 * @param
 	 * @return
 	 */
+	public void invalidate() {
+		is_valid = false;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
 	public long reduceEnd() {
 		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		// in case of underflow
+		if( end - 1 > end ) {
+			is_valid = false;
+			return end;
+		}
 		return end--;
 	}
 	
@@ -120,6 +143,11 @@ public final class LongRange implements IValidate {
 	 */
 	public long increaseBegin() {
 		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		// in case of overflow
+		if( begin + 1 < begin ) {
+			is_valid = false;
+			return begin;
+		}
 		return begin++;
 	}
 	
@@ -257,6 +285,7 @@ public final class LongRange implements IValidate {
 		}
 		begin = Math.min(begin, range.begin);
 		end = Math.max(end, range.end);
+		range.invalidate();
 	}
 	
 	
@@ -313,7 +342,7 @@ public final class LongRange implements IValidate {
 	 * @see j3l.util.check.IValidate#isValid()
 	 */
 	@Override public boolean isValid() {
-		return getRange() >= 0;
+		return is_valid && getRange() >= 0;
 	}
 	
 }

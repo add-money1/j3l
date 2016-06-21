@@ -1,4 +1,15 @@
 	
+		
+	2016.06.18
+		
+		j3l.util.LongRange
+			-> added "boolean is_valid" and "void invalidate()"
+			-> "boolean isValid()" checks "is_valid"
+			-> "long reduceEnd()" checks for underflow
+			-> "long increaseBegin()" checks for overflow
+			-> "LongRange(long, long)" initializes "is_valid"
+		
+	
 	2016.06.18
 		
 		j3l.util.LongRange
