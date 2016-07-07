@@ -7,10 +7,29 @@ import java.util.function.Function;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.12.14_0
+ * @version 2016.06.27_0
  * @author Johannes B. Latzel
  */
 public final class ElementChecker {
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElementsForEquality(byte[] buffer1, byte[] buffer2) {
+		if( buffer1.length != buffer2.length ) {
+			return false;
+		}
+		for(int a=0,n=buffer1.length;a<n;a++) {
+			if( buffer1[a] != buffer2[a] ) {
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	
 	/**

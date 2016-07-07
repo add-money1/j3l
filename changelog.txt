@@ -1,4 +1,10 @@
 	
+	
+	2016.06.27
+	
+		j3l.util.check.ElementChecker
+			-> added "static boolean checkAllElementsForEquality(byte[], byte[])"
+			
 		
 	2016.06.18
 		
