@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Stream;
 
-import j3l.util.check.ArgumentChecker;
+import j3l.util.ArgumentChecker;
 
 
 /**

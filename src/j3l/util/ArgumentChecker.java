@@ -1,9 +1,7 @@
-package j3l.util.check;
+package j3l.util;
 
 import java.io.File;
 import java.util.function.Function;
-
-import j3l.util.IClose;
 
 
 /**

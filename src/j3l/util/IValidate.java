@@ -1,4 +1,4 @@
-package j3l.util.check;
+package j3l.util;
 
 /**
  * <p></p>

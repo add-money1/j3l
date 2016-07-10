@@ -1,6 +1,6 @@
 package j3l.util.stream;
 
-import j3l.util.check.IValidate;
+import j3l.util.IValidate;
 
 
 /**
@@ -27,7 +27,7 @@ public class StreamFilter {
 	/**
 	 * <p>filters invalid instances</p>
 	 *
-	 * @param t any reference to an instance of {@link j3l.util.check.IValidate IValidate}
+	 * @param t any reference to an instance of {@link j3l.util.IValidate IValidate}
 	 * @return true if the instance is valid, false otherwise
 	 */
 	public static <T extends IValidate> boolean filterInvalid(T t) {

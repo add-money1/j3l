@@ -3,8 +3,6 @@ package j3l.util;
 import java.util.Comparator;
 
 import j3l.GlobalString;
-import j3l.util.check.ArgumentChecker;
-import j3l.util.check.IValidate;
 
 /**
  * <p></p>

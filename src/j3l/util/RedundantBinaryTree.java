@@ -10,7 +10,6 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import j3l.util.check.ArgumentChecker;
 import j3l.util.stream.StreamMode;
 
 

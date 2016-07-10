@@ -1,6 +1,6 @@
 package j3l;
 
-import j3l.util.check.ArgumentChecker;
+import j3l.util.ArgumentChecker;
 
 /**
  * <p></p>

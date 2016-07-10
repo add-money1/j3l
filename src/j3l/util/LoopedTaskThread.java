@@ -2,8 +2,6 @@ package j3l.util;
 
 import java.time.Instant;
 
-import j3l.util.check.ArgumentChecker;
-
 /**
  * <p></p>
  * 

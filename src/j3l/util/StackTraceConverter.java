@@ -1,7 +1,5 @@
 package j3l.util;
 
-import j3l.util.check.ArgumentChecker;
-
 /**
  * <p>converts stacktraces to Strings</p>
  * 
