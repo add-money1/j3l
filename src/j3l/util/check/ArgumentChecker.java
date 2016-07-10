@@ -1,6 +1,7 @@
 package j3l.util.check;
 
 import java.io.File;
+import java.util.function.Function;
 
 import j3l.util.IClose;
 
@@ -245,6 +246,93 @@ public final class ArgumentChecker {
 			throw new SecurityException("The " + name_of_the_instance + " is not open!");
 		}
 		return close;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElementsForEquality(byte[] buffer1, byte[] buffer2) {
+		if( buffer1.length != buffer2.length ) {
+			return false;
+		}
+		for(int a=0,n=buffer1.length;a<n;a++) {
+			if( buffer1[a] != buffer2[a] ) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElements(byte[] array, byte value) {
+		
+		for( byte b : array ) {
+			if( b != value ) {
+				return false;
+			}
+		}
+		
+		return true;
+		
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElementsForZero(byte[] array) {
+		return ArgumentChecker.checkAllElements(array, (byte)0);
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static <T, R> boolean checkAllElements(T[] array, Function<T, R> function, T check_object) {
+		
+		for( T element : array ) {
+			if( !function.apply(element).equals(check_object) ) {
+				return false;
+			}
+		}
+		
+		return true;
+		
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static <T> boolean checkAllElementsForNull(T[] array) {
+		
+		for( T element : array ) {
+			if( element == null ) {
+				return true;
+			}
+		}
+		
+		return true;
+		
 	}
 	
 }
