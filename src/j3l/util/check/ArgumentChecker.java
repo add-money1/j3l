@@ -2,12 +2,14 @@ package j3l.util.check;
 
 import java.io.File;
 
+import j3l.util.close.IClose;
+
 
 /**
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.03.10_0
+ * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
 public final class ArgumentChecker {
@@ -229,6 +231,33 @@ public final class ArgumentChecker {
 		}
 		else {
 			return validate;
+		}
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static <T extends Exception> IClose<T> checkForOpen(IClose<T> close) {
+		return checkForOpen(close, close.toString());
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static <T extends Exception> IClose<T> checkForOpen(IClose<T> close, String name_of_the_instance) {
+		if( !close.isOpen() ) {
+			throw new SecurityException("The " + name_of_the_instance + " is not open!");
+		}
+		else {
+			return close;
 		}
 	}
 	
