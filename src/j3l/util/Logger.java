@@ -119,7 +119,8 @@ public final class Logger implements Flushable, IClose<IOException> {
 	@Override public void finalize() {
 		try {
 			close();
-		} catch (IOException e) {
+		}
+		catch( IOException e ) {
 			e.printStackTrace();
 		}
 	}
