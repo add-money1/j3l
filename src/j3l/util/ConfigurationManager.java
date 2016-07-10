@@ -1,4 +1,4 @@
-package j3l.configuration;
+package j3l.util;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
