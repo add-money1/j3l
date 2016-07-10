@@ -1,3 +1,3 @@
 # j3l
 
-- Read j3l/changelog.txt for detailed changes
+Utility packages - code-improvements and constructive suggestions are welcomed
