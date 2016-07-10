@@ -2,7 +2,7 @@ package j3l.util.check;
 
 import java.io.File;
 
-import j3l.util.close.IClose;
+import j3l.util.IClose;
 
 
 /**

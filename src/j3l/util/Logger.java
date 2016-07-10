@@ -8,8 +8,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import j3l.util.check.ArgumentChecker;
-import j3l.util.close.ClosureState;
-import j3l.util.close.IClose;
 
 
 /**
