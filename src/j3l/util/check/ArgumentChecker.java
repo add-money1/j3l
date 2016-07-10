@@ -62,9 +62,7 @@ public final class ArgumentChecker {
 			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
 					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
 		}
-		else {
-			return value;
-		}
+		return value;
 	}
 	
 	
@@ -90,9 +88,7 @@ public final class ArgumentChecker {
 			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
 					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
 		}
-		else {
-			return value;
-		}
+		return value;
 	}
 	
 	
@@ -118,9 +114,7 @@ public final class ArgumentChecker {
 			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
 					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
 		}
-		else {
-			return value;
-		}
+		return value;
 	}
 	
 	
@@ -146,9 +140,7 @@ public final class ArgumentChecker {
 			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
 					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
 		}
-		else {
-			return value;
-		}
+		return value;
 	}
 	
 	
@@ -202,9 +194,7 @@ public final class ArgumentChecker {
 		if( value.trim().length() == 0 ) {
 			throw new IllegalArgumentException("The argument \"" + name_of_the_value + "\" must not be empty!");
 		}
-		else {
-			return value;
-		}
+		return value;
 	}
 
 
@@ -229,9 +219,7 @@ public final class ArgumentChecker {
 		if( !ArgumentChecker.checkForNull(validate, name).isValid() ) {
 			throw new SecurityException("The instance \"" + validate.toString() + "\" is not valid!");
 		}
-		else {
-			return validate;
-		}
+		return validate;
 	}
 	
 	
@@ -256,9 +244,7 @@ public final class ArgumentChecker {
 		if( !close.isOpen() ) {
 			throw new SecurityException("The " + name_of_the_instance + " is not open!");
 		}
-		else {
-			return close;
-		}
+		return close;
 	}
 	
 }
