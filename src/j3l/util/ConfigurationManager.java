@@ -19,7 +19,7 @@ import java.util.Set;
  * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
-public class ConfigurationManager implements IReadConfiguration {
+public class ConfigurationManager {
 	
 	
 	/**
@@ -212,10 +212,13 @@ public class ConfigurationManager implements IReadConfiguration {
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see j3l.configuration.IReadConfiguration#getValue(java.lang.String)
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
 	 */
-	@Override public String getValue(String name) {
+	public String getValue(String name) {
 		String temp_value = configuration_table.get(name);
 		if( temp_value != null ) {
 			return temp_value.trim();
@@ -224,11 +227,13 @@ public class ConfigurationManager implements IReadConfiguration {
 	}
 	
 	
-	/*
-	 * (non-Javadoc)
-	 * @see j3l.configuration.IReadConfiguration#getConfiguration()
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
 	 */
-	@Override public HashMap<String, String> getConfiguration() {
+	public HashMap<String, String> getConfiguration() {
 		HashMap<String, String> configuration_map = new HashMap<>();
 		configuration_table.forEach((key, value) -> configuration_map.put(key, value));
 		return configuration_map;
