@@ -10,14 +10,12 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import j3l.util.stream.StreamMode;
-
 
 /**
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.05.07_0
+ * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
 public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
@@ -546,25 +544,6 @@ public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable
 	 */
 	public Stream<T> stream() {
 		return toList().stream();
-	}
-	
-	
-	/**
-	 * <p></p>
-	 *
-	 * @param
-	 * @return
-	 */
-	public Stream<T> stream(StreamMode stream_mode) {
-		Stream<T> stream = stream();
-		switch( stream_mode ) {
-			case Sequential:
-				return stream();
-			case Parallel:
-				return stream.parallel();
-			default:
-				return stream;
-		}
 	}
 	
 	
