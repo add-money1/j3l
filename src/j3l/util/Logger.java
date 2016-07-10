@@ -5,7 +5,6 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.Flushable;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 
 /**
@@ -16,12 +15,6 @@ import java.io.PrintWriter;
  * @author Johannes B. Latzel
  */
 public final class Logger implements Flushable, IClose<IOException> {
-	
-	
-	/**
-	 * <p></p>
-	 */
-	private final static BufferedWriter STANDARD_WRITER = new BufferedWriter(new PrintWriter(System.out));
 	
 	
 	/**
@@ -50,10 +43,8 @@ public final class Logger implements Flushable, IClose<IOException> {
 		try {
 			writer = new BufferedWriter(new FileWriter(log_file));
 		}
-		catch (Exception e) {
-			writer = Logger.STANDARD_WRITER;
-			log(e.toString());
-			log(toString() + ": using the standard writer!");
+		catch( IOException e ) {
+			throw new IOException("Coudl not create the writer!", e);
 		}
 	}
 	
@@ -71,17 +62,6 @@ public final class Logger implements Flushable, IClose<IOException> {
 				writer.write(System.lineSeparator());
 			}
 		}
-	}
-	
-	
-	/**
-	 * <p></p>
-	 *
-	 * @param
-	 * @return
-	 */
-	public boolean usesStandardWriter() {
-		return writer == Logger.STANDARD_WRITER;
 	}
 	
 	
