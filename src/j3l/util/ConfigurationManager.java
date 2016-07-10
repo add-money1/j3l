@@ -16,7 +16,7 @@ import java.util.Set;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.12.04_0
+ * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
 public class ConfigurationManager implements IReadConfiguration {
@@ -220,9 +220,7 @@ public class ConfigurationManager implements IReadConfiguration {
 		if( temp_value != null ) {
 			return temp_value.trim();
 		}
-		else {
-			return "";
-		}
+		return "";
 	}
 	
 	
