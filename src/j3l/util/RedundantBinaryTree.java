@@ -21,7 +21,7 @@ import j3l.util.stream.StreamMode;
  * @version 2016.05.07_0
  * @author Johannes B. Latzel
  */
-public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
+public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	
 	
 	/**
@@ -47,7 +47,7 @@ public class BinaryTree<T, R extends Comparable<R>> implements Iterable<T> {
 	 *
 	 * @param comparator
 	 */
-	public BinaryTree(Function<T, R> attribute_function) {
+	public RedundantBinaryTree(Function<T, R> attribute_function) {
 		this.attribute_function = ArgumentChecker.checkForNull(attribute_function, "attribute_function");
 		head = null;
 		size = 0;
