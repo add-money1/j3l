@@ -1,6 +1,6 @@
 package j3l;
 
-import j3l.util.ArgumentChecker;
+import j3l.util.Checker;
 
 /**
  * <p></p>
@@ -19,7 +19,7 @@ public enum GlobalString {
 	
 	
 	private GlobalString(String string) {
-		this.string = ArgumentChecker.checkForEmptyString(string, "string");
+		this.string = Checker.checkForEmptyString(string, "string");
 	}
 	
 	

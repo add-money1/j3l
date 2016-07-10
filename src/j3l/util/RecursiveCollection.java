@@ -63,8 +63,8 @@ public final class RecursiveCollection<T> {
 	 * @return
 	 */
 	public RecursiveCollection(int initial_capacity, double growth_rate) {
-		object_array = new Object[ArgumentChecker.checkForBoundaries(initial_capacity, 1, Integer.MAX_VALUE, "initial_capacity")];
-		this.growth_rate = ArgumentChecker.checkForBoundaries(growth_rate, 0, Double.MAX_VALUE, "growth_rate");
+		object_array = new Object[Checker.checkForBoundaries(initial_capacity, 1, Integer.MAX_VALUE, "initial_capacity")];
+		this.growth_rate = Checker.checkForBoundaries(growth_rate, 0, Double.MAX_VALUE, "growth_rate");
 		if( growth_rate == 0 ) {
 			throw new IllegalArgumentException("The growth_rate must not be equal to 0!");
 		}

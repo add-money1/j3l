@@ -41,7 +41,7 @@ public class ConfigurationManager implements IReadConfiguration {
 	 * @return
 	 */
 	public ConfigurationManager(File configuration_file) {
-		ArgumentChecker.checkForExistence(configuration_file, "configuration_file");
+		Checker.checkForExistence(configuration_file, "configuration_file");
 		this.configuration_file = configuration_file;
 		configuration_table = new Hashtable<>();
 	}
@@ -65,8 +65,8 @@ public class ConfigurationManager implements IReadConfiguration {
 	 * @return
 	 */
 	public void addElement(String name, String value) {
-		ArgumentChecker.checkForEmptyString(name, "name");
-		ArgumentChecker.checkForNull(value, "value");
+		Checker.checkForEmptyString(name, "name");
+		Checker.checkForNull(value, "value");
 		configuration_table.put(name, value);
 	}
 	
@@ -78,7 +78,7 @@ public class ConfigurationManager implements IReadConfiguration {
 	 * @return
 	 */
 	public void removeElement(String name) {
-		ArgumentChecker.checkForEmptyString(name, "name");
+		Checker.checkForEmptyString(name, "name");
 		configuration_table.remove(name);
 	}
 	
@@ -164,9 +164,9 @@ public class ConfigurationManager implements IReadConfiguration {
 	 */
 	private void evaluateLine(String line) {
 		
-		ArgumentChecker.checkForEmptyString(line, "line");
+		Checker.checkForEmptyString(line, "line");
 		String[] split_string = line.trim().split("=");
-		ArgumentChecker.checkForNull(split_string, "split_string");
+		Checker.checkForNull(split_string, "split_string");
 		
 		if( split_string.length != 2 ) {
 			throw new RuntimeException("The line contains the wrong number of \"=\"-signs! It must be exactly 1 and is: "
@@ -194,12 +194,12 @@ public class ConfigurationManager implements IReadConfiguration {
 	 */
 	private StringBuilder createLine(StringBuilder string_buffer, String name) {
 		
-		ArgumentChecker.checkForNull(string_buffer, "string_buffer");
-		ArgumentChecker.checkForEmptyString(name, "name");
+		Checker.checkForNull(string_buffer, "string_buffer");
+		Checker.checkForEmptyString(name, "name");
 		string_buffer.setLength(0);
 		
 		String value = configuration_table.get(name);
-		ArgumentChecker.checkForNull(value, "value");		
+		Checker.checkForNull(value, "value");		
 		string_buffer.ensureCapacity( name.length() + value.length() + 3 );
 		
 		string_buffer.append(name);

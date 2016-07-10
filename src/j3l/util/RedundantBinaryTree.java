@@ -45,7 +45,7 @@ public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable
 	 * @param comparator
 	 */
 	public RedundantBinaryTree(Function<T, R> attribute_function) {
-		this.attribute_function = ArgumentChecker.checkForNull(attribute_function, "attribute_function");
+		this.attribute_function = Checker.checkForNull(attribute_function, "attribute_function");
 		head = null;
 		size = 0;
 	}
@@ -172,7 +172,7 @@ public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable
 		}
 		BinaryNode current = head;
 		BinaryNode previous = null;
-		R attribute = ArgumentChecker.checkForNull(attribute_function.apply(t), "attribute");
+		R attribute = Checker.checkForNull(attribute_function.apply(t), "attribute");
 		int comparison;
 		do {
 			comparison = attribute.compareTo(attribute_function.apply(current.getValue()));
@@ -237,7 +237,7 @@ public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable
 		if( head == null ) {
 			return null;
 		}
-		ArgumentChecker.checkForNull(comparison_type, "comparison_type");
+		Checker.checkForNull(comparison_type, "comparison_type");
 		BinaryNode current = head;
 		BinaryNode previous = null;
 		int comparison;
@@ -699,7 +699,7 @@ public class RedundantBinaryTree<T, R extends Comparable<R>> implements Iterable
 		 * @return
 		 */
 		public BinaryNode(T value) {
-			this.value = ArgumentChecker.checkForNull(value, "value");
+			this.value = Checker.checkForNull(value, "value");
 			left = right = null;
 		}
 		

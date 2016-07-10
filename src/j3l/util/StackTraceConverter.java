@@ -33,7 +33,7 @@ public final class StackTraceConverter {
 	 * @throws java.lang.NullPointerException if the thread is equal to null
 	 */
 	public static String getStackTrace(Thread thread) {
-		ArgumentChecker.checkForNull(thread, THREAD);
+		Checker.checkForNull(thread, THREAD);
 		StackTraceElement[] stack_trace_array = thread.getStackTrace();
 		StringBuilder stack_trace = new StringBuilder(stack_trace_array.length * 50);
 		for(int a=0;a<stack_trace_array.length;a++) {

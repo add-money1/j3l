@@ -11,7 +11,7 @@ import java.util.function.Function;
  * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
-public final class ArgumentChecker {
+public final class Checker {
 	
 	
 	/**
@@ -21,7 +21,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static <T> T checkForNull(T object) {
-		return ArgumentChecker.<T>checkForNull(object, "object");
+		return Checker.<T>checkForNull(object, "object");
 	}
 	
 	
@@ -46,7 +46,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static int checkForBoundaries(int value, int min_value, int max_value) {
-		return ArgumentChecker.checkForBoundaries(value, min_value, max_value, Integer.toString(value));
+		return Checker.checkForBoundaries(value, min_value, max_value, Integer.toString(value));
 	}
 	
 	
@@ -72,7 +72,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static long checkForBoundaries(long value, long min_value, long max_value) {
-		return ArgumentChecker.checkForBoundaries(value, min_value, max_value, Long.toString(value));
+		return Checker.checkForBoundaries(value, min_value, max_value, Long.toString(value));
 	}
 	
 	
@@ -98,7 +98,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static float checkForBoundaries(float value, float min_value, float max_value) {
-		return ArgumentChecker.checkForBoundaries(value, min_value, max_value, Float.toString(value));
+		return Checker.checkForBoundaries(value, min_value, max_value, Float.toString(value));
 	}
 	
 	
@@ -124,7 +124,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static double checkForBoundaries(double value, double min_value, double max_value) {
-		return ArgumentChecker.checkForBoundaries(value, min_value, max_value, Double.toString(value));
+		return Checker.checkForBoundaries(value, min_value, max_value, Double.toString(value));
 	}
 	
 	
@@ -150,7 +150,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static File checkForExistence(File file) {
-		return ArgumentChecker.checkForExistence(file, "file");
+		return Checker.checkForExistence(file, "file");
 	}
 	
 	
@@ -161,7 +161,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static File checkForExistence(File file, String name_of_the_file) {
-		ArgumentChecker.checkForNull(file, name_of_the_file);
+		Checker.checkForNull(file, name_of_the_file);
 		if( !file.isFile() ) {
 			throw new IllegalArgumentException("The file \"" + name_of_the_file + "\" at \""
 					+ file.getAbsolutePath() + "\" does not exists!");
@@ -188,8 +188,8 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public static String checkForEmptyString(String value, String name_of_the_value) {
-		ArgumentChecker.checkForNull(value, "value");
-		ArgumentChecker.checkForNull(name_of_the_value, "name_of_the_value");
+		Checker.checkForNull(value, "value");
+		Checker.checkForNull(name_of_the_value, "name_of_the_value");
 		if( value.trim().length() == 0 ) {
 			throw new IllegalArgumentException("The argument \"" + name_of_the_value + "\" must not be empty!");
 		}
@@ -204,7 +204,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static <T extends IValidate> T checkForValidation(T validate) {
-		return ArgumentChecker.checkForValidation(validate, "validate");
+		return Checker.checkForValidation(validate, "validate");
 	}
 
 
@@ -215,7 +215,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public final static <T extends IValidate> T checkForValidation(T validate, String name) {
-		if( !ArgumentChecker.checkForNull(validate, name).isValid() ) {
+		if( !Checker.checkForNull(validate, name).isValid() ) {
 			throw new SecurityException("The instance \"" + validate.toString() + "\" is not valid!");
 		}
 		return validate;
@@ -292,7 +292,7 @@ public final class ArgumentChecker {
 	 * @return
 	 */
 	public static boolean checkAllElementsForZero(byte[] array) {
-		return ArgumentChecker.checkAllElements(array, (byte)0);
+		return Checker.checkAllElements(array, (byte)0);
 	}
 	
 	

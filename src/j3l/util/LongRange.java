@@ -123,7 +123,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public long reduceEnd() {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		// in case of underflow
 		if( end - 1 > end ) {
 			is_valid = false;
@@ -140,7 +140,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public long increaseBegin() {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		// in case of overflow
 		if( begin + 1 < begin ) {
 			is_valid = false;
@@ -179,7 +179,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public boolean contains(long element) {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		return element >= begin && element <= end;
 	}
 	
@@ -191,8 +191,8 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public boolean contains(LongRange range) {
-		ArgumentChecker.checkForValidation(range, GlobalString.Range.toString());
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(range, GlobalString.Range.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		return range.begin >= begin && range.end <= end;
 	}
 	
@@ -204,7 +204,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public boolean elementIsAddable(long element) {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		return elementIsAddableAtBegin(element) || elementIsAddableAtEnd(element);
 	}
 	
@@ -254,7 +254,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public boolean elementIsAddableAtBegin(long element) {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		return element == begin - 1;
 	}
 	
@@ -266,7 +266,7 @@ public final class LongRange implements IValidate {
 	 * @return
 	 */
 	public boolean elementIsAddableAtEnd(long element) {
-		ArgumentChecker.checkForValidation(this, GlobalString.LongRange.toString());
+		Checker.checkForValidation(this, GlobalString.LongRange.toString());
 		return element == end + 1;
 	}
 	

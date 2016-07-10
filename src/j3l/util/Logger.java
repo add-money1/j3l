@@ -37,7 +37,7 @@ public final class Logger implements Flushable, IClose<IOException> {
 	 * @throws IOException 
 	 */
 	public Logger(File log_file) throws IOException {
-		ArgumentChecker.checkForExistence(log_file, "log_file");
+		Checker.checkForExistence(log_file, "log_file");
 		closure_state = ClosureState.None;
 		open();
 		try {

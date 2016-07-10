@@ -32,8 +32,8 @@ public final class LoopedTaskThread extends Thread {
 	 */
 	public LoopedTaskThread(Runnable looped_task, String name, long loop_time_span) {
 		super(name);
-		this.looped_task = ArgumentChecker.checkForNull(looped_task, "looped_task");
-		this.loop_time_span = ArgumentChecker.checkForBoundaries(loop_time_span, 0, Long.MAX_VALUE, "loop_time_span");
+		this.looped_task = Checker.checkForNull(looped_task, "looped_task");
+		this.loop_time_span = Checker.checkForBoundaries(loop_time_span, 0, Long.MAX_VALUE, "loop_time_span");
 	}
 	
 	
