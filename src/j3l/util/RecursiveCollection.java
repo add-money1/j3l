@@ -6,7 +6,7 @@ import j3l.util.check.ArgumentChecker;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.04.03_0
+ * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
 public final class RecursiveCollection<T> {
@@ -91,11 +91,9 @@ public final class RecursiveCollection<T> {
 			}
 			return next_set.add(t);
 		}
-		else {
-			object_array[next_index] = t;
-			next_index++;
-			return true;
-		}
+		object_array[next_index] = t;
+		next_index++;
+		return true;
 	}
 	
 	
@@ -154,18 +152,14 @@ public final class RecursiveCollection<T> {
 		if( isFull() && next_set != null ) {
 			return next_set.removeLast();
 		}
-		else {
-			if( next_index > 0 ) {
-				next_index--;
-				// cast is okay, because only instances of T can be added
-				@SuppressWarnings("unchecked") T t = (T)object_array[next_index];
-				object_array[next_index] = null;
-				return t;
-			}
-			else {
-				throw new RuntimeException("There is no last element!");
-			}
+		if( next_index > 0 ) {
+			next_index--;
+			// cast is okay, because only instances of T can be added
+			@SuppressWarnings("unchecked") T t = (T)object_array[next_index];
+			object_array[next_index] = null;
+			return t;
 		}
+		throw new RuntimeException("There is no last element!");
 	}
 	
 	
