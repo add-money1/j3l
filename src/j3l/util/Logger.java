@@ -12,7 +12,7 @@ import java.io.PrintWriter;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2015.11.24_0
+ * @version 2016.07.10_0
  * @author Johannes B. Latzel
  */
 public final class Logger implements Flushable, IClose<IOException> {
@@ -38,26 +38,15 @@ public final class Logger implements Flushable, IClose<IOException> {
 	
 	/**
 	 * <p></p>
-	 */
-	private final Object writer_lock;
-	
-	
-	/**
-	 * <p></p>
 	 *
 	 * @param
 	 * @return
 	 * @throws IOException 
 	 */
 	public Logger(File log_file) throws IOException {
-		
 		ArgumentChecker.checkForExistence(log_file, "log_file");
-		
-		writer_lock = new Object();
 		closure_state = ClosureState.None;
-		
 		open();
-		
 		try {
 			writer = new BufferedWriter(new FileWriter(log_file));
 		}
@@ -66,7 +55,6 @@ public final class Logger implements Flushable, IClose<IOException> {
 			log(e.toString());
 			log(toString() + ": using the standard writer!");
 		}
-		
 	}
 	
 	
@@ -77,7 +65,7 @@ public final class Logger implements Flushable, IClose<IOException> {
 	 * @return
 	 */
 	public void log(String message) throws IOException {
-		synchronized( writer_lock ) {
+		synchronized( writer ) {
 			if( isOpen() ) {
 				writer.write(message);
 				writer.write(System.lineSeparator());
@@ -101,7 +89,7 @@ public final class Logger implements Flushable, IClose<IOException> {
 	 * @see java.io.Flushable#flush()
 	 */
 	@Override public void flush() throws IOException {
-		synchronized( writer_lock ) {
+		synchronized( writer ) {
 			if( !isClosed() ) {
 				writer.flush();
 			}
@@ -121,7 +109,7 @@ public final class Logger implements Flushable, IClose<IOException> {
 	 * @see j3l.util.interfaces.IClose#open()
 	 */
 	@Override public void open() {
-		synchronized( writer_lock ) {
+		synchronized( writer ) {
 			if( !hasBeenOpened() ) {			
 				closure_state = ClosureState.Open;
 			}
@@ -133,20 +121,14 @@ public final class Logger implements Flushable, IClose<IOException> {
 	 * @see j3l.util.interfaces.IClose#close()
 	 */
 	@Override public void close() throws IOException {
-		
-		synchronized( writer_lock ) {
+		synchronized( writer ) {
 			if( !isOpen() ) {			
 				return;
 			}
-			else {
-				closure_state = ClosureState.InClosure;
-			}
+			closure_state = ClosureState.InClosure;
 		}
-		
 		flush();
-		
 		closure_state = ClosureState.Closed;
-		
 	}
 	
 	
