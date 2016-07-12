@@ -8,7 +8,7 @@ import java.util.function.Function;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.07.10_0
+ * @version 2016.07.12_0
  * @author Johannes B. Latzel
  */
 public final class Checker {
@@ -36,6 +36,58 @@ public final class Checker {
 			throw new NullPointerException("The argument \"" + name_of_the_object + "\" must not be equal to null!");
 		}
 		return object;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static byte checkForBoundaries(byte value, byte min_value, byte max_value) {
+		return Checker.checkForBoundaries(value, min_value, max_value, Integer.toString(value));
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static byte checkForBoundaries(byte value, byte min_value, byte max_value, String name_of_the_value) {
+		if( value < min_value || value > max_value ) {
+			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
+					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
+		}
+		return value;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static short checkForBoundaries(short value, short min_value, short max_value) {
+		return Checker.checkForBoundaries(value, min_value, max_value, Integer.toString(value));
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public final static short checkForBoundaries(short value, short min_value, short max_value, String name_of_the_value) {
+		if( value < min_value || value > max_value ) {
+			throw new IndexOutOfBoundsException("The argument \"" + name_of_the_value + "\" must be in range of ["
+					+ min_value + "|" + max_value + "] and is equal to " + value + " instead!");
+		}
+		return value;
 	}
 	
 	
