@@ -1,6 +1,7 @@
 package j3l.util;
 
 import java.io.File;
+import java.nio.ByteBuffer;
 import java.util.function.Function;
 
 
@@ -311,6 +312,25 @@ public final class Checker {
 		}
 		for(int a=0,n=buffer1.length;a<n;a++) {
 			if( buffer1[a] != buffer2[a] ) {
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElementsForEquality(ByteBuffer buffer1, ByteBuffer buffer2) {
+		if( buffer1.remaining() != buffer2.remaining() ) {
+			return false;
+		}
+		for(int a=0,n=buffer1.remaining();a<n;a++) {
+			if( buffer1.get() != buffer2.get() ) {
 				return false;
 			}
 		}
