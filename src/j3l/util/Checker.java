@@ -9,7 +9,7 @@ import java.util.function.Function;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.07.12_0
+ * @version 2016.09.22_0
  * @author Johannes B. Latzel
  */
 public final class Checker {
@@ -354,6 +354,20 @@ public final class Checker {
 		
 		return true;
 		
+	}
+	
+	
+	/**
+	 * <p></p>
+	 *
+	 * @param
+	 * @return
+	 */
+	public static boolean checkAllElements(ByteBuffer buffer, byte value) {
+		buffer.rewind();
+		byte[] buffer_array = new byte[buffer.remaining()];
+		buffer.get(buffer_array);
+		return Checker.checkAllElements(buffer_array, value);
 	}
 	
 	
