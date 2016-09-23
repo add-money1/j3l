@@ -6,7 +6,7 @@ import java.time.Instant;
  * <p></p>
  * 
  * @since JDK 1.8
- * @version 2016.05.21_0
+ * @version 2016.09.23_0
  * @author Johannes B. Latzel
  */
 public final class LoopedTaskThread extends Thread {
@@ -42,6 +42,15 @@ public final class LoopedTaskThread extends Thread {
 	 *
 	 * @param
 	 * @return
+	 */
+	public long getLoopTimeSpan() {
+		return loop_time_span;
+	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see java.lang.Thread#run()
 	 */
 	@Override public final void run() {
 		long start_time;
