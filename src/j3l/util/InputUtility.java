@@ -13,7 +13,7 @@ import java.nio.channels.ReadableByteChannel;
  * </p>
  * 
  * @since JDK 1.8
- * @version 2016.08.12_0
+ * @version 2016.09.29_0
  * @author Johannes B. Latzel
  */
 public final class InputUtility {
@@ -87,7 +87,7 @@ public final class InputUtility {
 	 */
 	public static ByteBuffer readComplete(ReadableByteChannel channel, ByteBuffer buffer) throws IOException {
 		int actually_read = 0;
-		int buffer_size = buffer.capacity();
+		int buffer_size = buffer.remaining();
 		int current_read_in_bytes;
 		while( actually_read < buffer_size ) {
 			current_read_in_bytes = channel.read(buffer);
